@@ -1,0 +1,18 @@
+{
+  "runtimeOptions": {
+    "tfm": "net6.0",
+    "includedFrameworks": [
+      {
+        "name": "Microsoft.NETCore.App",
+        "version": "6.0.8"
+      }
+    ],
+    "rollForwardOnNoCandidateFx": 2,
+    "configProperties": {
+      "System.Reflection.Metadata.MetadataUpdater.IsSupported": false,
+      "System.Runtime.TieredCompilation": true,
+      "System.Runtime.TieredCompilation.QuickJit": true,
+      "System.Runtime.TieredCompilation.QuickJitForLoops": true
+    }
+  }
+}

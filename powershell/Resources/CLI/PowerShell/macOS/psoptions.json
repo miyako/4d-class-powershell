@@ -1,0 +1,15 @@
+{
+  "ForMinimalSize": false,
+  "Framework": "net6.0",
+  "Top": "/Users/runner/work/_temp/PowerShell/src/powershell-unix",
+  "PSModuleRestore": false,
+  "Configuration": "Release",
+  "RootInfo": {
+    "IsValid": false,
+    "ValidPath": "/PowerShell",
+    "Warning": "Please ensure your repo is at the root of the file system and named 'PowerShell' (example: '/PowerShell'), when building and packaging for release!",
+    "RepoPath": "/Users/runner/work/_temp/PowerShell"
+  },
+  "Output": "/Users/runner/work/_temp/PowerShell/src/powershell-unix/bin/Release/net6.0/osx-x64/publish/pwsh",
+  "Runtime": "osx-x64"
+}
