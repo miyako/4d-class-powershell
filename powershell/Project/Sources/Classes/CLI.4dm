@@ -6,9 +6,11 @@ Class constructor($executableName : Text)
 		: (Is macOS)
 			This.platform:="macOS"
 			This.executableName:=$executableName
+			This.EOL:="\n"
 		: (Is Windows)
 			This.platform:="Windows"
 			This.executableName:=$executableName+".exe"
+			This.EOL:="\r\n"
 	End case 
 	
 	This.currentDirectory:=Folder(Get 4D folder(Current resources folder); fk platform path).folder("CLI").folder(This.name).folder(This.platform)
@@ -40,3 +42,13 @@ Function execute($options : Object)
 	This.chmod()
 	
 	4D.SystemWorker.new(This.executablePath; $options).wait()
+	
+Function isEscapeSequence($data : Text)->$isEscapeSequence : Boolean
+	
+	$isEscapeSequence:=Match regex("\\u001B.+"; $data)
+	
+	//https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
+	
+Function isEmptyLine($data : Text)->$isEmptyLine : Boolean
+	
+	$isEmptyLine:=Match regex("(\\r?\\n)+"; $data)

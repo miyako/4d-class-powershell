@@ -8,26 +8,62 @@ Class constructor
 	This.onError:=This.script
 	This.onTerminate:=This.script
 	
-Function run()->$this : cs.TEST
+Function _clearBuffer()->$this : cs.TEST
 	
 	$this:=This
 	
-	This.data:=New collection
+	This.response:=New collection
 	
-	This.started:=False
-	This.ended:=False
+Function addResponse($command : Text)->$this : cs.TEST
 	
-	This.steps:=New collection
+	$this:=This
 	
-	This.steps.push("[System.Net.IPAddress]::Any | ConvertTo-Json -Compress")
+	This._clearBuffer()
+	
+	$response:=New object("command"; $command; "response"; This.response)
+	
+	This.responses.push($response)
+	
+Function _setupBuffer()->$this : cs.TEST
+	
+	$this:=This
+	
+	This.responses:=New collection
+	
+	This._clearBuffer()
+	
+Function run($steps : Collection)->$this : cs.TEST
+	
+	$this:=This
+	
+	This.steps:=$steps
+	
+	This._setupBuffer()
 	
 	This.CLI.execute($this)
+	
+Function execute($worker : 4D.SystemWorker)
+	
+	Case of 
+		: (This.steps.length#0)
+			
+			$command:=This.steps.shift()
+			
+			This.addResponse($command)
+			
+			$worker.postMessage($command+This.CLI.EOL)
+			//do not closeInput() here! it will terminate the CLI
+			$worker.wait(0)
+			
+		Else 
+			
+			$worker.closeInput()  //→response→termination
+			
+	End case 
 	
 Function script($worker : 4D.SystemWorker; $params : Object)
 	
 	Case of 
-		: ($params.type="response")
-			
 		: ($params.type="data") & ($worker.dataType="text")
 			
 			var $data : Text
@@ -35,39 +71,24 @@ Function script($worker : 4D.SystemWorker; $params : Object)
 			$data:=$params.data
 			
 			Case of 
-				: ($data="PowerShell@Type 'help' to get help.")
+				: (This.CLI.isEmptyLine($data))
 					
-				: (Match regex("\\n+"; $data))
+				: (This.CLI.isEscapeSequence($data))
 					
-				: (Match regex("\\u001B\\[\\?1l"; $data))
+				: (This.CLI.isStartupMessage($data))
 					
-					This.started:=True
+				: (This.CLI.isPrompted($data))
 					
-				: (Match regex("\\u001B\\[\\?1h"; $data))
+					This.execute($worker)
 					
-				: (Match regex("PS .+?> "; $data)) & (Not(This.ended))
-					
-					Case of 
-						: (This.steps.length#0)
-							
-							$worker.postMessage(This.steps.shift())
-							$worker.closeInput()
-							$worker.wait(0)
-							
-						Else 
-							
-							This.ended:=True
-							
-					End case 
-					
-				: (This.started) & (Not(This.ended))
-					
-					This.data.push($data)
-					
+				Else 
+					This.response.push($data)
 			End case 
 			
 		: ($params.type="error")
 			
-		: ($params.type="termination")
+		: ($params.type="termination") & ($worker.dataType="text")
+			
+		: ($params.type="response") & ($worker.dataType="text")
 			
 	End case 

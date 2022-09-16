@@ -1,4 +1,6 @@
 //%attributes = {}
-$data:=cs.TEST.new().run().data
+$steps:=New collection
+$steps.push("[System.Net.IPAddress]::Any | ConvertTo-Json")
+$steps.push("[System.Net.IPAddress]::Any | ConvertTo-Json")
 
-ALERT($data.join("\\r"))
+$responses:=cs.TEST.new().run($steps).responses
