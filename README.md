@@ -3,3 +3,9 @@
 
 # 4d-class-powershell
 [SystemWorker](https://developer.4d.com/docs/ja/API/SystemWorkerClass.html) + [PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-macos?view=powershell-7.2#binary-archives) example.
+
+#### Class Hierarchy
+
+* CLI: base class for all CLI 
+* PowerShell: specific for `pwsh`
+* TEST: this example
