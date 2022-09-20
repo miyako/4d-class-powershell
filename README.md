@@ -12,3 +12,5 @@
 * [TEST](https://github.com/miyako/4d-class-powershell/blob/main/powershell/Project/Sources/Classes/TEST.4dm): this example
 
 to avoid potential GateKeeper issues, git clone rather than download zip, on Mac.
+
+`pwsh` runs under Rosetta 2. you may replace it with native Apple Silicon distribution if all agents are ARM. currently Microsoft does not release Universal Binary 2 edition of PowerShell.
