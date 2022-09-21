@@ -32,8 +32,6 @@ End while
 ```4d
 $steps:=New collection
 $steps.push("[System.Net.IPAddress]::Any | ConvertTo-Json")
-$steps.push("[System.Net.IPAddress]::Any | ConvertTo-Json")
-$steps.push("[System.Net.IPAddress]::Any | ConvertTo-Json")
 
 $responses:=cs.PS1.new($steps).responses
 ```
@@ -43,9 +41,10 @@ $responses:=cs.PS1.new($steps).responses
 ```4d
 $instance:=cs.PS1.new()
 
-$response:=$instance.command("[System.Net.IPAddress]::Any | ConvertTo-Json")
-$response:=$instance.command("[System.Net.IPAddress]::Any | ConvertTo-Json")
-$response:=$instance.command("[System.Net.IPAddress]::Any | ConvertTo-Json")
+$response_1:=$instance.command("Get-Command")
+$response_2:=$instance.command("Get-TimeZone")
+$response_3:=$instance.command("Get-Date")
+$response_4:=$instance.command("Get-Process | Sort-Object CPU -Descending | Select-Object -First 5"
 
 $instance.terminate()
 ```
