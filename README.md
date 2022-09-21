@@ -39,3 +39,17 @@ $response:=$instance.command("[System.Net.IPAddress]::Any | ConvertTo-Json")
 
 $instance.terminate()
 ```
+
+* same. with file object
+
+```4d
+$file:=Folder(fk resources folder).folder("ps1").file("test.ps1")
+
+$instance:=cs.PS1.new()
+
+$response:=$instance.command($file)
+$response:=$instance.command($file)
+$response:=$instance.command($file)
+
+$instance.terminate()
+```
