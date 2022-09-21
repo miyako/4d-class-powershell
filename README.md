@@ -20,8 +20,8 @@ filtering of [escape sequences](https://gist.github.com/fnky/458719343aabd01cfb1
 
 ```4d
 While (Match regex("(?:\\u001b\\[[0-9?;=#]+[hlm])([^\\u001b]*)"; $in; $i; $pos; $len))
-		$out:=$out+Substring($in; $pos{1}; $len{1})
-		$i:=$pos{0}+$len{0}
+	$out:=$out+Substring($in; $pos{1}; $len{1})
+	$i:=$pos{0}+$len{0}
 End while 
 ```
 
