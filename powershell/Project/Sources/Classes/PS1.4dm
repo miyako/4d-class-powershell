@@ -7,7 +7,7 @@ Class constructor($steps : Collection)
 			
 			This.name:=Generate UUID
 			
-			CALL WORKER(This.name; Formula(cs._MULTIPLE.new($signal)))
+			CALL WORKER(This.name; Formula(cs._MULTIPLE.new($1)); $signal)
 			
 			$signal.wait()
 			
@@ -21,7 +21,7 @@ Function command($command : Variant)->$response : Collection
 	
 	$signal:=New signal
 	
-	CALL WORKER(This.name; Formula(cs._MULTIPLE.new($signal; $command)))
+	CALL WORKER(This.name; Formula(cs._MULTIPLE.new($1; $2)); $signal; $command)
 	
 	$signal.wait()
 	
