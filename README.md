@@ -9,8 +9,8 @@
 
 * [CLI](https://github.com/miyako/4d-class-powershell/blob/main/powershell/Project/Sources/Classes/CLI.4dm): base class for all CLI 
 \> [PowerShell](https://github.com/miyako/4d-class-powershell/blob/main/powershell/Project/Sources/Classes/PowerShell.4dm): specific to `pwsh`
-* [PowerShellController](https://github.com/miyako/4d-class-powershell/blob/main/powershell/Project/Sources/Classes/PowerShellController.4dm): inteface to `PowerShell`
-* [PS1](https://github.com/miyako/4d-class-powershell/blob/main/powershell/Project/Sources/Classes/PS1.4dm): this example
+* [PowerShellController](https://github.com/miyako/4d-class-powershell/blob/main/powershell/Project/Sources/Classes/PowerShellController.4dm): interface to `PowerShell`
+* [PS1](https://github.com/miyako/4d-class-powershell/blob/main/powershell/Project/Sources/Classes/PS1.4dm): interface to worker
 
 to avoid potential GateKeeper issues, git clone rather than download zip, on Mac.
 
@@ -54,3 +54,9 @@ $response:=$instance.command($file)
 
 $instance.terminate()
 ```
+
+---
+
+出典: [2つの日付の差](https://qiita.com/ryosuke0825/items/06eae2e99f587b5275aa#2つの日付の差)
+
+<img width="992" alt="" src="https://user-images.githubusercontent.com/1725068/191513012-3f836a61-c6cd-4688-8e5b-f02b1fa1d503.png">
