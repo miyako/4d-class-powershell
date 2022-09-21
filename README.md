@@ -9,7 +9,7 @@
 
 * [CLI](https://github.com/miyako/4d-class-powershell/blob/main/powershell/Project/Sources/Classes/CLI.4dm): base class for all CLI 
 \> [PowerShell](https://github.com/miyako/4d-class-powershell/blob/main/powershell/Project/Sources/Classes/PowerShell.4dm): specific to `pwsh`
-* [PowerShellController](https://github.com/miyako/4d-class-powershell/blob/main/powershell/Project/Sources/Classes/PowerShellController.4dm)
+* [PowerShellController](https://github.com/miyako/4d-class-powershell/blob/main/powershell/Project/Sources/Classes/PowerShellController.4dm): inteface to `PowerShell`
 * [PS1](https://github.com/miyako/4d-class-powershell/blob/main/powershell/Project/Sources/Classes/PS1.4dm): this example
 
 to avoid potential GateKeeper issues, git clone rather than download zip, on Mac.
