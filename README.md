@@ -5,11 +5,12 @@
 # 4d-class-powershell
 [SystemWorker](https://developer.4d.com/docs/ja/API/SystemWorkerClass.html) + [PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-macos?view=powershell-7.2#binary-archives) example.
 
-#### Class Hierarchy
+#### Classes
 
 * [CLI](https://github.com/miyako/4d-class-powershell/blob/main/powershell/Project/Sources/Classes/CLI.4dm): base class for all CLI 
-* [PowerShell](https://github.com/miyako/4d-class-powershell/blob/main/powershell/Project/Sources/Classes/PowerShell.4dm): specific to `pwsh`
-* [TEST](https://github.com/miyako/4d-class-powershell/blob/main/powershell/Project/Sources/Classes/TEST.4dm): this example
+\> [PowerShell](https://github.com/miyako/4d-class-powershell/blob/main/powershell/Project/Sources/Classes/PowerShell.4dm): specific to `pwsh`
+* [PowerShellController](https://github.com/miyako/4d-class-powershell/blob/main/powershell/Project/Sources/Classes/PowerShellController.4dm): inteface to `PowerShell`
+* [PS1](https://github.com/miyako/4d-class-powershell/blob/main/powershell/Project/Sources/Classes/PS1.4dm): this example
 
 to avoid potential GateKeeper issues, git clone rather than download zip, on Mac.
 
@@ -40,7 +41,7 @@ $response:=$instance.command("[System.Net.IPAddress]::Any | ConvertTo-Json")
 $instance.terminate()
 ```
 
-* same. with file object
+* same, with file object
 
 ```4d
 $file:=Folder(fk resources folder).folder("ps1").file("test.ps1")

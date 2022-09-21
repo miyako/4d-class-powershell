@@ -73,21 +73,19 @@ Function _execute()
 			
 			This.worker.postMessage(This.command+This.CLI.EOL)
 			
-		: (Value type(This.command)=Is object)
+		: (Value type(This.command)=Is object) && (OB Instance of(This.command; 4D.File)) && (This.command.exists)
 			
-			Case of 
-				: (OB Instance of(This.command; 4D.File))
-					
-					Case of 
-						: (Is macOS)
-							This.worker.postMessage(File(This.command.platformPath; fk platform path).path+This.CLI.EOL)
-						: (Is Windows)
-							This.worker.postMessage(This.command.platformPath+This.CLI.EOL)
-					End case 
-			End case 
+			If (This.command.exists)
+				Case of 
+					: (Is macOS)
+						This.worker.postMessage(File(This.command.platformPath; fk platform path).path+This.CLI.EOL)
+					: (Is Windows)
+						This.worker.postMessage(This.command.platformPath+This.CLI.EOL)
+				End case 
+			End if 
 			
 		Else 
-			
+			This.signal.trigger()
 	End case 
 	
 	This.worker.wait(0)
