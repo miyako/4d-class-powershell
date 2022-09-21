@@ -14,3 +14,28 @@
 to avoid potential GateKeeper issues, git clone rather than download zip, on Mac.
 
 `pwsh` runs under Rosetta 2. you may replace it with native Apple Silicon distribution if all agents are ARM. currently Microsoft does not release Universal Binary 2 edition of PowerShell.
+
+#### Examples
+
+* create instance, execute. destroy (slow)
+
+```4d
+$steps:=New collection
+$steps.push("[System.Net.IPAddress]::Any | ConvertTo-Json")
+$steps.push("[System.Net.IPAddress]::Any | ConvertTo-Json")
+$steps.push("[System.Net.IPAddress]::Any | ConvertTo-Json")
+
+$responses:=cs.SINGLE.new().run($steps).responses
+```
+
+* create instance, execute many times, destroy (more efficient)
+
+```4d
+$instance:=cs.PS1.new()
+
+$response:=$instance.command("[System.Net.IPAddress]::Any | ConvertTo-Json")
+$response:=$instance.command("[System.Net.IPAddress]::Any | ConvertTo-Json")
+$response:=$instance.command("[System.Net.IPAddress]::Any | ConvertTo-Json")
+
+$instance.terminate()
+```
