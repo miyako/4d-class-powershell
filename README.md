@@ -57,6 +57,7 @@ $instance.terminate()
 
 ---
 
-出典: [2つの日付の差](https://qiita.com/ryosuke0825/items/06eae2e99f587b5275aa#2つの日付の差)
+**出典**: [2つの日付の差](https://qiita.com/ryosuke0825/items/06eae2e99f587b5275aa#2つの日付の差)
 
-<img width="992" alt="" src="https://user-images.githubusercontent.com/1725068/191513012-3f836a61-c6cd-4688-8e5b-f02b1fa1d503.png">
+<img width="934" alt="スクリーンショット 0004-09-21 22 56 36" src="https://user-images.githubusercontent.com/1725068/191523812-79a8b6e1-5c2d-42f1-a92b-0b58264df850.png">
+
