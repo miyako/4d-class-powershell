@@ -1,3 +1,15 @@
 {
+	"api": {
+		"classes": [
+			"_MULTIPLE",
+			"_SINGLE",
+			"CLI",
+			"PowerShell",
+			"PowerShellController",
+			"PS1"
+		]
+	},
+	"multiple": {},
+	"simgle": {},
 	"trash": {}
 }
