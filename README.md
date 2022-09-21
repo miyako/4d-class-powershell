@@ -23,6 +23,7 @@ to avoid potential GateKeeper issues, git clone rather than download zip, on Mac
 $steps:=New collection
 $steps.push("[System.Net.IPAddress]::Any | ConvertTo-Json")
 $steps.push("[System.Net.IPAddress]::Any | ConvertTo-Json")
+$steps.push("[System.Net.IPAddress]::Any | ConvertTo-Json")
 
 $responses:=cs.PS1.new($steps).responses
 ```
