@@ -17,7 +17,7 @@ to avoid potential GateKeeper issues, git clone rather than download zip, on Mac
 
 #### Examples
 
-* create instance, execute. destroy (slow)
+* create instance, execute lines in sequence
 
 ```4d
 $steps:=New collection
