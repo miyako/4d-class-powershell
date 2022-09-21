@@ -40,7 +40,7 @@ $response:=$instance.command("[System.Net.IPAddress]::Any | ConvertTo-Json")
 $instance.terminate()
 ```
 
-* same. with file object
+* same, with file object
 
 ```4d
 $file:=Folder(fk resources folder).folder("ps1").file("test.ps1")
