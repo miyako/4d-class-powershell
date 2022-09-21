@@ -61,6 +61,8 @@ Function filterEscapeMode($in : Text)->$out : Text
 		$i:=$pos{0}+$len{0}
 	End while 
 	
+	$out:=$out+Substring($in; $i)
+	
 	//https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
 	
 Function isEmptyLine($data : Text)->$isEmptyLine : Boolean
