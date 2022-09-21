@@ -16,6 +16,15 @@ to avoid potential GateKeeper issues, git clone rather than download zip, on Mac
 
 `pwsh` runs under Rosetta 2. you may replace it with native Apple Silicon distribution if all agents are ARM. currently Microsoft does not release Universal Binary 2 edition of PowerShell.
 
+filtering of [escape sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797) is pretty basic.
+
+```4d
+While (Match regex("(?:\\u001b\\[[0-9?;=#]+[hlm])([^\\u001b]*)"; $in; $i; $pos; $len))
+	$out:=$out+Substring($in; $pos{1}; $len{1})
+	$i:=$pos{0}+$len{0}
+End while 
+```
+
 #### Examples
 
 * create instance, execute lines in sequence
@@ -57,6 +66,7 @@ $instance.terminate()
 
 ---
 
-出典: [2つの日付の差](https://qiita.com/ryosuke0825/items/06eae2e99f587b5275aa#2つの日付の差)
+**出典**: [2つの日付の差](https://qiita.com/ryosuke0825/items/06eae2e99f587b5275aa#2つの日付の差)
 
-<img width="992" alt="" src="https://user-images.githubusercontent.com/1725068/191513012-3f836a61-c6cd-4688-8e5b-f02b1fa1d503.png">
+<img width="934" alt="スクリーンショット 0004-09-21 22 56 36" src="https://user-images.githubusercontent.com/1725068/191523812-79a8b6e1-5c2d-42f1-a92b-0b58264df850.png">
+
