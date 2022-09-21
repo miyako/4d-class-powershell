@@ -56,7 +56,7 @@ Function _onExecute($worker : 4D.SystemWorker)
 	
 	$signal:=This.signal
 	
-	$response:=Split string(This.response.join(""); This.CLI.EOL; sk ignore empty strings)
+	$response:=This.CLI.responseToCollection(This.response.join(""))
 	
 	Use ($signal)
 		$signal.response:=$response.copy(ck shared)

@@ -52,8 +52,6 @@ Function _script($worker : 4D.SystemWorker; $params : Object)
 			$data:=$params.data
 			
 			Case of 
-				: (This.CLI.isEscapeSequence($data))
-					
 				: (This.CLI.isStartupMessage($data))
 					
 				: (This.CLI.isPrompted($data))
@@ -72,7 +70,7 @@ Function _script($worker : 4D.SystemWorker; $params : Object)
 			
 			For each ($response; This.responses)
 				
-				$response.response:=Split string($response.response.join(""); This.CLI.EOL; sk ignore empty strings)
+				$response.response:=This.CLI.responseToCollection($response.response.join(""))
 				
 			End for each 
 			

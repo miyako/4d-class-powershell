@@ -43,9 +43,23 @@ Function execute($options : Object)
 	
 	4D.SystemWorker.new(This.executablePath; $options).wait()
 	
-Function isEscapeSequence($data : Text)->$isEscapeSequence : Boolean
+Function responseToCollection($text : Text)->$response : Collection
 	
-	$isEscapeSequence:=Match regex("\\u001B.+"; $data)
+	$responseText:=This.filterEscapeMode($text)
+	
+	$response:=Split string($responseText; This.EOL; sk ignore empty strings)
+	
+Function filterEscapeMode($in : Text)->$out : Text
+	
+	ARRAY LONGINT($pos; 0)
+	ARRAY LONGINT($len; 0)
+	
+	$i:=1
+	
+	While (Match regex("(?:\\u001b\\[[0-9?;=#]+[hlm])([^\\u001b]*)"; $in; $i; $pos; $len))
+		$out:=$out+Substring($in; $pos{1}; $len{1})
+		$i:=$pos{0}+$len{0}
+	End while 
 	
 	//https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
 	
