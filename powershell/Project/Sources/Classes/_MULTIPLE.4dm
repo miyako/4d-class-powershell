@@ -68,6 +68,8 @@ Function _execute()
 	
 	This.onEvent:=This._onExecute
 	
+	This._clearBuffer()
+	
 	Case of 
 		: (Value type(This.command)=Is text)
 			
