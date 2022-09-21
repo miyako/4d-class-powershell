@@ -71,8 +71,6 @@ Function script($worker : 4D.SystemWorker; $params : Object)
 			$data:=$params.data
 			
 			Case of 
-				: (This.CLI.isEmptyLine($data))
-					
 				: (This.CLI.isEscapeSequence($data))
 					
 				: (This.CLI.isStartupMessage($data))
@@ -90,5 +88,11 @@ Function script($worker : 4D.SystemWorker; $params : Object)
 		: ($params.type="termination") & ($worker.dataType="text")
 			
 		: ($params.type="response") & ($worker.dataType="text")
+			
+			For each ($response; This.responses)
+				
+				$response.response:=Split string($response.response.join(""); This.CLI.EOL; sk ignore empty strings)
+				
+			End for each 
 			
 	End case 
