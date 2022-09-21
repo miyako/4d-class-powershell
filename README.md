@@ -54,3 +54,5 @@ $response:=$instance.command($file)
 
 $instance.terminate()
 ```
+
+<img width="992" alt="" src="https://user-images.githubusercontent.com/1725068/191513012-3f836a61-c6cd-4688-8e5b-f02b1fa1d503.png">
