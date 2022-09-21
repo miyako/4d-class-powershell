@@ -23,12 +23,11 @@ to avoid potential GateKeeper issues, git clone rather than download zip, on Mac
 $steps:=New collection
 $steps.push("[System.Net.IPAddress]::Any | ConvertTo-Json")
 $steps.push("[System.Net.IPAddress]::Any | ConvertTo-Json")
-$steps.push("[System.Net.IPAddress]::Any | ConvertTo-Json")
 
-$responses:=cs.SINGLE.new().run($steps).responses
+$responses:=cs.PS1.new($steps).responses
 ```
 
-* create instance, execute many times, destroy (more efficient)
+* create instance, execute many times in dedicated worker, destroy in the end (more efficient)
 
 ```4d
 $instance:=cs.PS1.new()
