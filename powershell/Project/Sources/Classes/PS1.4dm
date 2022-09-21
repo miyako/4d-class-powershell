@@ -30,3 +30,4 @@ Function command($command : Variant)->$response : Collection
 Function terminate()
 	
 	CALL WORKER(This.name; Formula(cs._MULTIPLE.new()))
+	
