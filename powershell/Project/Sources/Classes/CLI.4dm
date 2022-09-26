@@ -15,16 +15,20 @@ Class constructor($executableName : Text)
 	
 	This.currentDirectory:=Folder(Get 4D folder(Current resources folder); fk platform path).folder("CLI").folder(This.name).folder(This.platform)
 	
+	This.encoding:="utf-8"
+	
 	Case of 
 		: (Is macOS)
 			This.executablePath:=This.currentDirectory.file(This.executableName).path
 		: (Is Windows)
 			This.executablePath:=This.currentDirectory.file(This.executableName).platformPath
+			This.encoding:="windows-31j"
 	End case 
 	
 	This.hideWindow:=True
 	This.variables:=New object
-	This.encoding:="utf-8"
+	
+	//This.dataType:="blob"
 	This.dataType:="text"
 	
 Function chmod()

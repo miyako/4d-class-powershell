@@ -49,6 +49,13 @@ Function _init()
 	
 	This.CLI.chmod()
 	
+	This.timeout:=This.CLI.timeout
+	This.currentDirectory:=This.CLI.currentDirectory
+	This.hideWindow:=This.CLI.hideWindow
+	This.variables:=This.CLI.variables
+	This.encoding:=This.CLI.encoding
+	This.dataType:=This.CLI.dataType
+	
 	This.worker:=4D.SystemWorker.new(This.CLI.executablePath; This)
 	This.worker.wait(0)
 	
@@ -73,7 +80,29 @@ Function _execute()
 	Case of 
 		: (Value type(This.command)=Is text)
 			
-			This.worker.postMessage(This.command+This.CLI.EOL)
+			Case of 
+				: (This.dataType="text")
+					
+					This.worker.postMessage(This.command+This.CLI.EOL)
+					
+				: (This.dataType="blob")
+					
+					//must post blob if dataType is blob
+					var $data : Blob
+					
+					CONVERT FROM TEXT(This.command+This.CLI.EOL; This.encoding; $data)
+					
+/*
+INSERT IN BLOB($data; 0; 3)
+					
+$data{0}:=0x00EF
+$data{1}:=0x00BB
+$data{2}:=0x00BF
+*/
+					
+					This.worker.postMessage($data)
+					
+			End case 
 			
 		: (Value type(This.command)=Is object) && (OB Instance of(This.command; 4D.File)) && (This.command.exists)
 			

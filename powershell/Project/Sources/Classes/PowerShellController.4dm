@@ -26,11 +26,31 @@ Function addResponse($command : Text)->$this : cs._SINGLE
 	
 	//MARK: -private
 	
+Function _clearDataBuffer()->$this : cs._SINGLE
+	
+	$this:=This
+	
+	var $bytes : Blob
+	
+	This.bytes:=$bytes
+	
+Function _appendDataBuffer($data : Blob)->$this : cs._SINGLE
+	
+	$this:=This
+	
+	var $bytes : Blob
+	
+	$bytes:=This.bytes  //copy mutable
+	COPY BLOB($data; $bytes; 0; BLOB size($bytes); BLOB size($data))
+	This.bytes:=$bytes  //copy immutable
+	
 Function _clearBuffer()->$this : cs._SINGLE
 	
 	$this:=This
 	
 	This.response:=New collection
+	
+	This._clearDataBuffer()
 	
 Function _setupBuffer()->$this : cs._SINGLE
 	
@@ -62,11 +82,34 @@ Function _script($worker : 4D.SystemWorker; $params : Object)
 					This.response.push($data)
 			End case 
 			
+		: ($params.type="data") & ($worker.dataType="blob")
+			
+			var $data : Text
+			
+			$data:=Convert to text($params.data; This.encoding)
+			
+			Case of 
+				: (This.CLI.isStartupMessage($data))
+					
+				: (This.CLI.isPrompted($data))
+					
+					This.response.push(Convert to text(This.bytes; This.encoding))
+					
+					This._clearDataBuffer()
+					
+					This.onEvent($worker)
+					
+				Else 
+					
+					This._appendDataBuffer($params.data)
+					
+			End case 
+			
 		: ($params.type="error")
 			
 		: ($params.type="termination")
 			
-		: ($params.type="response") & ($worker.dataType="text")
+		: ($params.type="response")
 			
 			For each ($response; This.responses)
 				
