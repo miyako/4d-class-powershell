@@ -5,6 +5,14 @@
 # 4d-class-powershell
 [SystemWorker](https://developer.4d.com/docs/ja/API/SystemWorkerClass.html) + [PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-macos?view=powershell-7.2#binary-archives) example.
 
+Note for Windows: because PowerShell (`pwsh.exe`) is included in the `/RESOURCES/` folder, you may have to first double click and unblock it. 
+
+<img width="108" alt="スクリーンショット 2023-02-23 11 08 09" src="https://user-images.githubusercontent.com/1725068/220806347-6ee7cbd7-1b4d-421b-9bb9-fa444cae9e49.png">
+
+Also, the copy included in this repository is the AMD x64 version.
+
+Alternatively you can replace it with an ARM version from [Microsoft](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.3#installing-the-zip-package).
+
 #### Classes
 
 * [CLI](https://github.com/miyako/4d-class-powershell/blob/main/powershell/Project/Sources/Classes/CLI.4dm): base class for all CLI 
