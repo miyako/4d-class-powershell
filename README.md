@@ -5,7 +5,7 @@
 # 4d-class-powershell
 [SystemWorker](https://developer.4d.com/docs/ja/API/SystemWorkerClass.html) + [PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-macos?view=powershell-7.2#binary-archives) example.
 
-Note for Windows: because PowerShell (`pwsh.exe`) is included in the `/RESOURCES/` folder, you may have to first double click and unblock it. 
+Note for Windows: You may have to first double click `pwsh.exe` in order to unblock it. 
 
 <img width="108" alt="スクリーンショット 2023-02-23 11 08 09" src="https://user-images.githubusercontent.com/1725068/220806347-6ee7cbd7-1b4d-421b-9bb9-fa444cae9e49.png">
 
